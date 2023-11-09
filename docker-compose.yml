@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+
+  noofa-api:
+    image: milkywayisdead/noofa-api
+    ports:
+      - 8000:8000
+    environment:
+      - NOOFA_DB_PATH=/noofa_db
+      - NOOFA_DB_NAME=noofa_db
+    volumes:
+     - /var/noofa_db:/noofa_db
+    command: uvicorn noofa-app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  noofa-ui:
+    image: milkywayisdead/noofa-ui
+    ports:
+      - 8080:8080
+    depends_on:
+      - noofa-api
+    command: http-server dist
