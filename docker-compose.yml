@@ -1,7 +1,5 @@
 version: "3.8"
-
 services:
-
   noofa-api:
     image: milkywayisdead/noofa-api
     ports:
